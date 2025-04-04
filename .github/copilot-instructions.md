@@ -6,13 +6,19 @@ We use `@testing-library/react` for testing React components via Vitest.
 
 We extend Vitest with custom matchers from `@testing-library/jest-dom`.
 
-We use `@testing-library/user-event` for simulating user interactions in Vitest tests.
+We don't use `fireEvent`. We use `@testing-library/user-event` for simulating user interactions in Vitest tests.
 
 We have Vitest configured to run in a browser-like environment using `jsdom`.
 
 We don't have globals enabled in Vitest, so we need to import `describe`, `it`, and `expect` from Vitest in each test file.
 
-We store all Vitest tests in `/src` alongside the file under test, and name the file the same as the file under test, but with a `.test.ts` extension.
+We store all Vitest tests in `/src` alongside the file under test and the test's filename should end with `.test.ts`.
+
+We import React when testing React components.
+
+We check for element visibility via `toBeVisible`.
+
+We check for absence of elements via `not.toBeInTheDocument`.
 
 ## Playwright
 
