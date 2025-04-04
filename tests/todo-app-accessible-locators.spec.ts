@@ -21,7 +21,8 @@ test.describe("TodoMVC Accessibility Tests", () => {
     await todoInput.fill("Walk the dog");
     await todoInput.press("Enter");
 
-    const checkbox = page.getByRole("checkbox", { name: "Walk the dog" });
+    // Hack: checkbox lacks a unique aria-label
+    const checkbox = page.getByRole("checkbox", { name: "Toggle Todo" });
     await checkbox.check();
 
     const completedItem = page.locator("li:has-text('Walk the dog')");
@@ -48,7 +49,11 @@ test.describe("TodoMVC Accessibility Tests", () => {
     await todoInput.fill("Task 2");
     await todoInput.press("Enter");
 
-    const checkbox = page.getByRole("checkbox", { name: "Task 1" });
+    // Hack: checkbox lacks a unique aria-label
+    const checkbox = page
+      .getByRole("listitem")
+      .filter({ hasText: "Task 1" })
+      .getByLabel("Toggle Todo");
     await checkbox.check();
 
     const activeFilter = page.getByRole("link", { name: "Active" });
@@ -68,7 +73,11 @@ test.describe("TodoMVC Accessibility Tests", () => {
     await todoInput.fill("Task 2");
     await todoInput.press("Enter");
 
-    const checkbox = page.getByRole("checkbox", { name: "Task 1" });
+    // Hack: checkbox lacks a unique aria-label
+    const checkbox = page
+      .getByRole("listitem")
+      .filter({ hasText: "Task 1" })
+      .getByLabel("Toggle Todo");
     await checkbox.check();
 
     const clearCompletedButton = page.getByRole("button", {
