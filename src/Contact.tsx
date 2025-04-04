@@ -4,6 +4,7 @@ export default function Contact() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({ subject: "", message: "" });
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const validate = () => {
     const newErrors: { subject: string; message: string } = {
@@ -19,10 +20,10 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert("Form submitted successfully!");
       setSubject("");
       setMessage("");
       setErrors({ subject: "", message: "" });
+      setFormSubmitted(true);
     }
   };
 
@@ -38,7 +39,15 @@ export default function Contact() {
   return (
     <div>
       <h1>Contact</h1>
-      <form onSubmit={handleSubmit}>
+      {formSubmitted && (
+        <p style={{ color: "green" }}>Form submitted successfully!</p>
+      )}
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+          setFormSubmitted(false); // Reset message on subsequent submissions
+        }}
+      >
         <div>
           <label htmlFor="subject">Subject:</label>
           <input
