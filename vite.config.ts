@@ -8,5 +8,6 @@ export default defineConfig({
   test: {
     include: ["src/**/*.{test,spec}.{js,ts,jsx,tsx}"],
     environment: "happy-dom",
+    setupFiles: ["./test-setup.js"],
   },
 });
