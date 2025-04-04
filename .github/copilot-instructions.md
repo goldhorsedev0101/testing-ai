@@ -18,8 +18,8 @@ We store all Vitest tests in `/src` alongside the file under test, and name the 
 
 We use Playwright for end-to-end testing.
 
-We use Playwright's recommended locators when possible, as documented here: https://playwright.dev/docs/locators#quick-guide
+We store all Playwright tests in `/tests`.
 
 We name our Playwright test files with the `.spec.ts` extension.
 
-We store all Playwright tests in `/tests`.
+We use Playwright's recommended locators when possible, as documented here: https://playwright.dev/docs/locators#quick-guide
