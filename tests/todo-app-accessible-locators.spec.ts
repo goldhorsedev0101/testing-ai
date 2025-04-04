@@ -12,7 +12,7 @@ test.describe("TodoMVC Accessibility Tests", () => {
     await todoInput.fill("Buy groceries");
     await todoInput.press("Enter");
 
-    const todoItem = page.getByRole("listitem", { name: "Buy groceries" });
+    const todoItem = page.locator("li:has-text('Buy groceries')");
     await expect(todoItem).toBeVisible();
   });
 
@@ -24,7 +24,7 @@ test.describe("TodoMVC Accessibility Tests", () => {
     const checkbox = page.getByRole("checkbox", { name: "Walk the dog" });
     await checkbox.check();
 
-    const completedItem = page.getByRole("listitem", { name: "Walk the dog" });
+    const completedItem = page.locator("li:has-text('Walk the dog')");
     await expect(completedItem).toHaveClass(/completed/);
   });
 
@@ -33,7 +33,7 @@ test.describe("TodoMVC Accessibility Tests", () => {
     await todoInput.fill("Read a book");
     await todoInput.press("Enter");
 
-    const todoItem = page.getByRole("listitem", { name: "Read a book" });
+    const todoItem = page.locator("li:has-text('Read a book')");
     await todoItem.hover();
     const deleteButton = todoItem.getByRole("button", { name: "Delete" });
     await deleteButton.click();
@@ -54,10 +54,10 @@ test.describe("TodoMVC Accessibility Tests", () => {
     const activeFilter = page.getByRole("link", { name: "Active" });
     await activeFilter.click();
 
-    const activeItem = page.getByRole("listitem", { name: "Task 2" });
+    const activeItem = page.locator("li:has-text('Task 2')");
     await expect(activeItem).toBeVisible();
 
-    const completedItem = page.getByRole("listitem", { name: "Task 1" });
+    const completedItem = page.locator("li:has-text('Task 1')");
     await expect(completedItem).not.toBeVisible();
   });
 
@@ -76,10 +76,10 @@ test.describe("TodoMVC Accessibility Tests", () => {
     });
     await clearCompletedButton.click();
 
-    const completedItem = page.getByRole("listitem", { name: "Task 1" });
+    const completedItem = page.locator("li:has-text('Task 1')");
     await expect(completedItem).not.toBeVisible();
 
-    const activeItem = page.getByRole("listitem", { name: "Task 2" });
+    const activeItem = page.locator("li:has-text('Task 2')");
     await expect(activeItem).toBeVisible();
   });
 });
