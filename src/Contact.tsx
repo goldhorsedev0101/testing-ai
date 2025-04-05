@@ -45,7 +45,6 @@ export default function Contact() {
       <form
         onSubmit={(e) => {
           handleSubmit(e);
-          setFormSubmitted(false); // Reset message on subsequent submissions
         }}
       >
         <div>
